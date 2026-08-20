@@ -1,0 +1,17 @@
+import React from "react";
+import { createRoot } from "react-dom/client";
+import FinanceApp from "./FinanceApp";
+import "../app/globals.css";
+
+const features = [
+  ["Spending, clearly sorted", "Review categories, recurring costs and month-on-month changes without digging through statements."],
+  ["A budget you can act on", "See what is left in each category, with practical warnings before you cross a limit."],
+  ["Investments in one view", "Track PSX holdings, mutual funds and savings certificates alongside everyday finances."],
+];
+
+function LandingPage() {
+  return <main className="landing"><nav className="public-nav" aria-label="Main navigation"><a className="brand" href="/"><span>h</span>Hisaab</a><div className="nav-links"><a href="#features">Features</a><a href="#security">Privacy</a><a href="#faq">FAQs</a></div><div className="nav-actions"><a className="text-link" href="/login">Sign in</a><a className="button small" href="/app">View demo</a></div></nav><section className="hero"><div className="hero-copy"><p className="eyebrow">Personal finance, brought together</p><h1>Know where your money stands — and what comes next.</h1><p className="lede">Hisaab brings spending, budgets, savings and investments into one calm, practical workspace built around life in Pakistan.</p><div className="hero-actions"><a className="button" href="/app">Explore the live demo <span>→</span></a><a className="secondary-button" href="#features">See how it works</a></div><p className="demo-note">No bank connection required. Demo data stays in your browser.</p></div><div className="dashboard-preview" aria-label="Hisaab dashboard preview"><div className="preview-head"><span className="preview-brand">h</span><div><b>Good morning, Muhammad</b><small>Wednesday, 20 August</small></div><button aria-label="Notifications">●</button></div><div className="balance-card"><small>Total balance</small><strong>Rs. 1,284,650</strong><span>↑ Rs. 42,300 this month</span></div><div className="preview-grid"><div><small>Income</small><b>Rs. 285,000</b></div><div><small>Spent</small><b>Rs. 164,800</b></div><div><small>Saved</small><b>Rs. 120,200</b></div></div><div className="preview-chart"><div className="chart-title"><b>Cash flow</b><span>Last 6 months</span></div><div className="bars">{[48,62,55,76,64,86].map((height,index)=><i key={index} style={{height:`${height}%`}} />)}</div></div><div className="preview-bottom"><div><b>Budget status</b><span>Rs. 35,200 remaining</span><progress value="73" max="100" /></div><div className="due"><small>Due Friday</small><b>PTCL Internet</b><span>Rs. 4,799</span></div></div></div></section><section className="trust-strip"><span>One view for everyday money</span><b>Monthly budgets</b><b>Bill reminders</b><b>Goal tracking</b><b>Investment records</b></section><section className="features" id="features"><div className="section-intro"><p className="eyebrow">Made for real financial routines</p><h2>Useful detail, without the clutter</h2><p>See the numbers that matter, then move naturally from a summary to the underlying transactions.</p></div><div className="feature-grid">{features.map(([title,description],index)=><article key={title}><span>0{index+1}</span><h3>{title}</h3><p>{description}</p><a href="/app">Open in demo →</a></article>)}</div></section></main>;
+}
+
+const app = window.location.pathname === "/" ? <LandingPage /> : <FinanceApp />;
+createRoot(document.getElementById("root")).render(<React.StrictMode>{app}</React.StrictMode>);
