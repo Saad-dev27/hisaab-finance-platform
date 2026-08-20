@@ -1,0 +1,2 @@
+const ENDPOINT="https://api.frankfurter.dev/v2/rate/USD/PKR";
+export async function getUsdRate(signal){const response=await fetch(ENDPOINT,{signal});if(response.status===429)throw new Error("Rate limit reached");if(!response.ok)throw new Error("Exchange service unavailable");const data=await response.json();if(!data?.rate)throw new Error("Invalid exchange response");return {rate:data.rate,date:data.date||"Latest reference rate",source:"Frankfurter"}}
